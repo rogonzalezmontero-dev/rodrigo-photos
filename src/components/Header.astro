@@ -1,5 +1,3 @@
-import HeaderLink from './HeaderLink.astro';
----
 <header>
   <nav>
     <!-- Logo R+M -->
@@ -8,18 +6,19 @@ import HeaderLink from './HeaderLink.astro';
         <span class="rm">R<span class="divider">•</span>M</span>
       </span>
     </a>
-    <!-- Navegación -->
+    <!-- Menú simple en español -->
     <div class="internal-links">
-      <HeaderLink href="/">Inicio</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">Sobre mí</HeaderLink>
-      <HeaderLink href="/contact">Contacto</HeaderLink>
+      <a href="/">Inicio</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">Sobre mí</a>
+      <a href="/contact">Contacto</a>
     </div>
   </nav>
 </header>
+
 <style>
   header {
-    background-color: rgb(245,245,245); /* fondo blanco grisáceo */
+    background-color: rgb(245,245,245);
     padding: 0.5em 1em;
     box-shadow: 0 2px 8px rgba(17,17,17,0.05);
   }
@@ -29,7 +28,6 @@ import HeaderLink from './HeaderLink.astro';
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  /* Logo estilo obturador */
   .logo .circle {
     display: flex;
     align-items: center;
@@ -51,7 +49,7 @@ import HeaderLink from './HeaderLink.astro';
   }
   .internal-links {
     display: flex;
-    gap: 1em;
+    gap: 1.5em;
   }
   .internal-links a {
     color: rgb(17,17,17);
@@ -60,18 +58,18 @@ import HeaderLink from './HeaderLink.astro';
     padding: 0.5em;
     transition: 0.3s;
   }
-  .internal-links a.active,
   .internal-links a:hover {
     color: #0aaaff;
     border-bottom: 2px solid #0aaaff;
   }
   /* Responsive móvil */
   @media (max-width: 720px) {
+    nav {
+      flex-direction: column;
+    }
     .internal-links {
-      flex-basis: 100%;
+      margin-top: 1em;
       justify-content: center;
-      margin-top: 0.5em;
-      flex-wrap: wrap;
     }
   }
 </style>
