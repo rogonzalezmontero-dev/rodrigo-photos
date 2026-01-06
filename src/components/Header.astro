@@ -26,4 +26,84 @@
       </a>
     </div>
   </nav>
-</
+</header>
+
+<style>
+  header {
+    background-color: #000000; /* Negro puro para potente */
+    padding: 1.5em 1em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo .circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+  .logo .rm {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+  }
+  .divider {
+    color: #0066FF; /* Acento azul sutil */
+  }
+  .main-links {
+    display: flex;
+    gap: 3em;
+  }
+  .main-links a {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 0.5em 0;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+  }
+  .main-links a:hover {
+    color: #0066FF;
+    border-bottom: 2px solid #0066FF;
+  }
+  .social-links {
+    display: flex;
+    gap: 1.5em;
+  }
+  .social-links a {
+    color: #FFFFFF;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+  .social-links a:hover {
+    opacity: 1;
+    color: #0066FF;
+    transform: scale(1.2);
+  }
+  .social-links svg {
+    width: 24px;
+    height: 24px;
+  }
+  @media (max-width: 720px) {
+    nav {
+      flex-direction: column;
+    }
+    .main-links {
+      margin: 1em 0;
+      gap: 2em;
+    }
+    .social-links {
+      margin-bottom: 1em;
+    }
+  }
+</style>
