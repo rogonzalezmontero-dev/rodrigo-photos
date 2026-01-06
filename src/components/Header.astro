@@ -1,19 +1,19 @@
 <header>
   <nav>
-    <!-- Logo R+M blanco -->
+    <!-- Logo R+M -->
     <a href="/" class="logo">
       <span class="circle">
         <span class="rm">R<span class="divider">•</span>M</span>
       </span>
     </a>
-    <!-- Menú principal blanco -->
+    <!-- Menú principal -->
     <div class="main-links">
       <a href="/">Inicio</a>
       <a href="/blog">Blog</a>
       <a href="/about">Sobre mí</a>
       <a href="/contact">Contacto</a>
     </div>
-    <!-- Redes sociales blancas a la derecha -->
+    <!-- Redes sociales a la derecha -->
     <div class="social-links">
       <a href="https://www.instagram.com/tuusuario" aria-label="Instagram" target="_blank">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.441s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.441-1.441-1.441z"/></svg>
@@ -26,17 +26,30 @@
 </header>
 
 <style>
+  :root {
+    --bg: #1b1b1b;
+    --text-primary: #ffffff;
+    --text-subtitle: #f6f6f6;
+    --text-secondary: #7d7d7d;
+  }
+
+  html, body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
   header {
-    background-color: #000000; /* Negro total */
-    padding: 1.5em 1em;
+    background-color: var(--bg);
+    padding: 2em 1em;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
-  body {
-    background-color: #000000; /* Todo el fondo negro */
-    color: #FFFFFF; /* Texto principal blanco */
-  }
+
   nav {
     display: flex;
     align-items: center;
@@ -44,70 +57,120 @@
     max-width: 1400px;
     margin: 0 auto;
   }
+
   .logo .circle {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    border: 3px solid #FFFFFF; /* Blanco */
+    border: 3px solid #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
+
   .logo .rm {
-    color: #FFFFFF; /* Blanco */
+    color: #ffffff;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
   }
+
   .divider {
-    color: #FFFFFF;
+    color: #ffffff;
   }
+
   .main-links {
     display: flex;
-    gap: 3em;
+    gap: 3.5em;
   }
+
   .main-links a {
-    color: #FFFFFF; /* Blanco */
+    color: #ffffff;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-decoration: none;
     padding: 0.5em 0;
     border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s;
+    transition: border-bottom 0.3s ease;
   }
+
   .main-links a:hover {
-    border-bottom: 2px solid #FFFFFF; /* Underline blanco al hover */
+    border-bottom: 2px solid #ffffff;
   }
+
   .social-links {
     display: flex;
-    gap: 1.5em;
+    gap: 1.8em;
   }
+
   .social-links a {
-    color: #FFFFFF;
+    color: #ffffff;
     opacity: 0.8;
-    transition: 0.3s;
+    transition: opacity 0.3s;
   }
+
   .social-links a:hover {
     opacity: 1;
   }
+
   .social-links svg {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
   }
-  /* Subtítulos en gris */
-  h2, .subtitle, p.secondary {
-    color: #BFC7D5; /* Gris suave para subtítulos y texto secundario */
+
+  /* Tipografía general para el sitio (títulos grandes y legibles) */
+  h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0.5em 0;
+    line-height: 1.1;
   }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #7d7d7d; /* Gris medio para subtítulos */
+    margin: 1em 0;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: #f6f6f6;
+    margin: 1em 0;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #f6f6f6;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 1em auto;
+  }
+
+  /* Espacio para fotos (banner alto y padding generoso) */
+  main {
+    padding: 4em 1em;
+    min-height: 80vh;
+  }
+
+  /* Responsive móvil */
   @media (max-width: 720px) {
-    nav {
-      flex-direction: column;
-      text-align: center;
+    h1 {
+      font-size: 3rem;
     }
     .main-links {
-      margin: 1.5em 0;
       gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1em;
+    }
+    nav {
+      flex-direction: column;
     }
     .social-links {
-      margin-bottom: 1em;
+      margin-top: 1em;
     }
   }
 </style>
