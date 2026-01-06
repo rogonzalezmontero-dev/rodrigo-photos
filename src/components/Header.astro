@@ -6,7 +6,7 @@
         <span class="rm">R<span class="divider">•</span>M</span>
       </span>
     </a>
-    <!-- Menú simple en español -->
+    <!-- Menú en español bien visible -->
     <div class="internal-links">
       <a href="/">Inicio</a>
       <a href="/blog">Blog</a>
@@ -19,7 +19,7 @@
 <style>
   header {
     background-color: rgb(245,245,245);
-    padding: 0.5em 1em;
+    padding: 1em;
     box-shadow: 0 2px 8px rgba(17,17,17,0.05);
   }
   nav {
@@ -27,20 +27,22 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .logo .circle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    border: 2px solid #0aaaff;
+    border: 3px solid #0aaaff;
   }
   .logo .rm {
     font-weight: bold;
     color: #0aaaff;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 0.05em;
   }
   .divider {
@@ -49,27 +51,37 @@
   }
   .internal-links {
     display: flex;
-    gap: 1.5em;
+    gap: 2em;
   }
   .internal-links a {
-    color: rgb(17,17,17);
-    font-weight: 600;
+    color: #0aaaff;              /* Azul desde el principio */
+    font-weight: bold;
+    font-size: 1.2rem;           /* Más grandes */
     text-decoration: none;
-    padding: 0.5em;
+    padding: 0.8em 1.2em;
+    border: 2px solid #0aaaff;
+    border-radius: 12px;
     transition: 0.3s;
   }
   .internal-links a:hover {
-    color: #0aaaff;
-    border-bottom: 2px solid #0aaaff;
+    background: #0aaaff;
+    color: white;
   }
   /* Responsive móvil */
   @media (max-width: 720px) {
     nav {
       flex-direction: column;
+      text-align: center;
     }
     .internal-links {
-      margin-top: 1em;
+      margin-top: 1.5em;
+      gap: 1em;
+      flex-wrap: wrap;
       justify-content: center;
+    }
+    .internal-links a {
+      padding: 0.7em 1em;
+      font-size: 1.1rem;
     }
   }
 </style>
