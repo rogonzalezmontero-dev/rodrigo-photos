@@ -1,176 +1,424 @@
-<header>
-  <nav>
-    <!-- Logo R+M -->
-    <a href="/" class="logo">
-      <span class="circle">
-        <span class="rm">R<span class="divider">•</span>M</span>
-      </span>
-    </a>
-    <!-- Menú principal -->
-    <div class="main-links">
-      <a href="/">Inicio</a>
-      <a href="/blog">Blog</a>
-      <a href="/about">Sobre mí</a>
-      <a href="/contact">Contacto</a>
+---
+// Script de JavaScript para el menú (se ejecuta en cliente)
+const menuToggleScript = `
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.querySelector('.nav-list');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+    }
+    
+    // Cerrar menú al hacer clic en enlace (móvil)
+    document.querySelectorAll('.nav-link, .nav-btn-cliente').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 992) {
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (navList) navList.classList.remove('active');
+            }
+        });
+    });
+    
+    // Animación del logo
+    const logoLink = document.getElementById('logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+});
+`;
+---
+
+<header class="main-header">
+    <div class="header-container">
+        <!-- Logo + Nombre -->
+        <div class="logo-section">
+            <a href="/" class="logo-link" id="logo-link">
+                <!-- Logo SVG animado -->
+                <div class="logo-wrapper">
+                    <svg class="logo-obturador" width="50" height="50" viewBox="0 0 100 100">
+                        <circle class="obturador-exterior" cx="50" cy="50" r="45" fill="none" stroke="#8A2BE2" stroke-width="3"/>
+                        <line class="linea-obturador linea1" x1="50" y1="5" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
+                        <line class="linea-obturador linea2" x1="95" y1="50" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
+                        <line class="linea-obturador linea3" x1="50" y1="95" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
+                        <line class="linea-obturador linea4" x1="5" y1="50" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
+                        <text class="iniciales-logo" x="50" y="55" text-anchor="middle" fill="#8A2BE2" font-size="24" font-weight="bold">RM</text>
+                    </svg>
+                </div>
+                <!-- Nombre al lado del logo -->
+                <div class="nombre-container">
+                    <span class="nombre-fotografo">Rodrigo Montero</span>
+                    <span class="tagline-fotografo">Fotógrafo</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Menú de navegación HORIZONTAL -->
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link active">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#galeria" class="nav-link">Galería</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <!-- Botón especial para clientes -->
+                <li>
+                    <a href="#acceso-clientes" class="nav-btn-cliente">
+                        <i class="fas fa-lock"></i> Área Clientes
+                        <span class="badge-exclusivo">Exclusivo</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Menú hamburguesa SOLO para móvil -->
+            <button class="menu-hamburguesa" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
     </div>
-    <!-- Redes sociales a la derecha -->
-    <div class="social-links">
-      <a href="https://www.instagram.com/tuusuario" aria-label="Instagram" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.441s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.441-1.441-1.441z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/tuusuario" aria-label="Facebook" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.469h3.047v-2.637c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.511c-1.491 0-1.956.925-1.956 1.874v2.244h3.328l-.532 3.469h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z"/></svg>
-      </a>
-    </div>
-  </nav>
 </header>
 
 <style>
-  :root {
-    --bg: #1b1b1b;
-    --text-primary: #ffffff;
-    --text-subtitle: #f6f6f6;
-    --text-secondary: #7d7d7d;
-  }
-
-  html, body {
-    background-color: var(--bg);
-    color: var(--text-primary);
-    margin: 0;
-    padding: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  header {
-    background-color: var(--bg);
-    padding: 2em 1em;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .logo .circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  }
-
-  .logo .rm {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.8rem;
-    letter-spacing: 0.05em;
-  }
-
-  .divider {
-    color: #ffffff;
-  }
-
-  .main-links {
-    display: flex;
-    gap: 3.5em;
-  }
-
-  .main-links a {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-decoration: none;
-    padding: 0.5em 0;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s ease;
-  }
-
-  .main-links a:hover {
-    border-bottom: 2px solid #ffffff;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 1.8em;
-  }
-
-  .social-links a {
-    color: #ffffff;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-  }
-
-  .social-links a:hover {
-    opacity: 1;
-  }
-
-  .social-links svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  /* Tipografía general para el sitio (títulos grandes y legibles) */
-  h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin: 0.5em 0;
-    line-height: 1.1;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: #7d7d7d; /* Gris medio para subtítulos */
-    margin: 1em 0;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-    color: #f6f6f6;
-    margin: 1em 0;
-  }
-
-  p {
-    font-size: 1.2rem;
-    color: #f6f6f6;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 1em auto;
-  }
-
-  /* Espacio para fotos (banner alto y padding generoso) */
-  main {
-    padding: 4em 1em;
-    min-height: 80vh;
-  }
-
-  /* Responsive móvil */
-  @media (max-width: 720px) {
-    h1 {
-      font-size: 3rem;
+    /* ===== VARIABLES ===== */
+    :root {
+        --color-primario: #8A2BE2;
+        --color-secundario: #333333;
+        --color-texto: #444444;
+        --color-fondo: #1b1b1b;  /* Manteniendo tu fondo oscuro */
+        --color-blanco: #ffffff;
+        --sombra-suave: 0 5px 15px rgba(0,0,0,0.08);
+        --transicion-rapida: all 0.3s ease;
     }
-    .main-links {
-      gap: 2em;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1em;
+
+    /* ===== HEADER HORIZONTAL ===== */
+    .main-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(27, 27, 27, 0.95);  /* Oscuro con transparencia */
+        backdrop-filter: blur(10px);
+        box-shadow: var(--sombra-suave);
+        z-index: 1000;
+        padding: 15px 0;
+        transition: var(--transicion-rapida);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    nav {
-      flex-direction: column;
+
+    .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    .social-links {
-      margin-top: 1em;
+
+    /* ===== LOGO + NOMBRE ===== */
+    .logo-section {
+        display: flex;
+        align-items: center;
     }
-  }
+
+    .logo-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: var(--transicion-rapida);
+        gap: 15px;
+    }
+
+    .logo-link:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Animación del obturador */
+    @keyframes abrirObturador {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes moverLineas {
+        0%, 100% { 
+            stroke-dasharray: 0, 100;
+            stroke-dashoffset: 0;
+        }
+        50% { 
+            stroke-dasharray: 100, 0;
+            stroke-dashoffset: 50;
+        }
+    }
+
+    .logo-obturador {
+        cursor: pointer;
+    }
+
+    .obturador-exterior {
+        stroke-dasharray: 283;
+        stroke-dashoffset: 283;
+        animation: moverLineas 3s ease-in-out infinite;
+    }
+
+    .linea-obturador {
+        transform-origin: 50px 50px;
+        animation: abrirObturador 4s ease-in-out infinite;
+    }
+
+    .linea1 { animation-delay: 0s; }
+    .linea2 { animation-delay: 0.5s; }
+    .linea3 { animation-delay: 1s; }
+    .linea4 { animation-delay: 1.5s; }
+
+    .iniciales-logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    /* Nombre del fotógrafo */
+    .nombre-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nombre-fotografo {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--color-blanco);
+        letter-spacing: -0.5px;
+    }
+
+    .tagline-fotografo {
+        font-size: 12px;
+        color: var(--color-primario);
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-top: 2px;
+    }
+
+    /* ===== MENÚ DE NAVEGACIÓN ===== */
+    .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--color-blanco);
+        font-weight: 500;
+        font-size: 16px;
+        padding: 8px 15px;
+        border-radius: 6px;
+        transition: var(--transicion-rapida);
+        display: inline-block;
+    }
+
+    .nav-link:hover {
+        color: var(--color-primario);
+        background-color: rgba(138, 43, 226, 0.1);
+    }
+
+    .nav-link.active {
+        color: var(--color-primario);
+        font-weight: 600;
+        position: relative;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 15px;
+        right: 15px;
+        height: 2px;
+        background-color: var(--color-primario);
+        border-radius: 2px;
+    }
+
+    /* Botón Área Clientes */
+    .nav-btn-cliente {
+        background: linear-gradient(135deg, var(--color-primario), #6a11cb);
+        color: white !important;
+        padding: 10px 25px !important;
+        border-radius: 30px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-btn-cliente:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        background: linear-gradient(135deg, #6a11cb, var(--color-primario));
+    }
+
+    .badge-exclusivo {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Menú hamburguesa - SOLO visible en móvil */
+    .menu-hamburguesa {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0;
+    }
+
+    .menu-hamburguesa span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-blanco);
+        border-radius: 3px;
+        transition: var(--transicion-rapida);
+    }
+
+    .menu-hamburguesa.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .menu-hamburguesa.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-hamburguesa.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+        .nav-list {
+            gap: 15px;
+        }
+        
+        .nav-link {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .nav-btn-cliente {
+            padding: 8px 18px !important;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .menu-hamburguesa {
+            display: flex;
+        }
+        
+        .nav-list {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-fondo);
+            flex-direction: column;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transicion-rapida);
+            z-index: 999;
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-list.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nav-list li {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .nav-link {
+            width: 100%;
+            justify-content: center;
+            padding: 18px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-link:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-link.active::after {
+            display: none;
+        }
+        
+        .nav-link.active {
+            background-color: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+        }
+        
+        .nav-btn-cliente {
+            justify-content: center;
+            margin: 20px 0 10px 0 !important;
+            width: 100%;
+            padding: 15px !important;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .header-container {
+            padding: 0 20px;
+        }
+        
+        .nombre-fotografo {
+            font-size: 20px;
+        }
+        
+        .tagline-fotografo {
+            font-size: 10px;
+        }
+        
+        .logo-obturador {
+            width: 40px;
+            height: 40px;
+        }
+    }
 </style>
+
+<script>
+    // Script del menú (se ejecuta en el cliente)
+    {menuToggleScript}
+</script>
