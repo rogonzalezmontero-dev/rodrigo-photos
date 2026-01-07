@@ -1,6 +1,6 @@
 ---
 // src/components/Header.astro
-// HEADER COMPLETO - LOGO ANIMADO DESDE /videos/
+// HEADER COMPLETO CON LOGO CANVAS (9 láminas realistas)
 ---
 
 <header class="main-header">
@@ -10,21 +10,16 @@
       <a href="/" class="logo-link" id="logo-link">
         <div class="logo-wrapper">
           <div class="logo-diafragma">
+            <!-- CANVAS DEL DIAFRAGMA -->
+            <canvas id="logoCanvas" class="canvas-diafragma" width="60" height="60"></canvas>
+            <!-- INICIALES SUPERPUESTAS -->
             <span class="iniciales-rm">RM</span>
-        <!-- GIF DESDE /videos/ -->
-<img 
-    src="./videos/logo-diafragma.gif" 
-    alt="Logo diafragma animado" 
-    class="video-diafragma"
-    width="60" 
-    height="60"
->
           </div>
         </div>
         
         <div class="nombre-container">
           <span class="nombre-fotografo">Rodrigo Montero</span>
-          <span class="tagline-fotografo">Fotografía</span>
+          <span class="tagline-fotografo">Fotografía Profesional</span>
         </div>
       </a>
     </div>
@@ -55,45 +50,43 @@
 </header>
 
 <style>
-  /* ===== RESET Y BASE ===== */
+  /* ===== VARIABLES ===== */
   :root {
     --color-primario: #8A2BE2;
     --color-primario-hover: #9d4edd;
     --color-fondo: #1B1B1B;
     --color-blanco: #FFFFFF;
     --color-texto: #E0E0E0;
-    --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.15);
-    --transicion-rapida: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sombra-suave: 0 4px 20px rgba(0,0,0,0.15);
+    --transicion: all 0.3s ease;
   }
-
-  /* FUENTES */
+  
+  /* ===== FUENTES ===== */
   .nombre-fotografo, .iniciales-rm {
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
   }
   
   .nav-link, .tagline-fotografo, .nav-btn-cliente {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
   }
   
-  /* ===== HEADER PRINCIPAL ===== */
+  /* ===== HEADER ===== */
   .main-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(27, 27, 27, 0.98);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    box-shadow: var(--sombra-suave);
-    z-index: 1000;
+    background-color: rgba(27, 27, 27, 0.95);
+    backdrop-filter: blur(10px);
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: var(--transicion-rapida);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    box-shadow: var(--sombra-suave);
   }
   
   .header-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -101,86 +94,54 @@
     align-items: center;
   }
   
-  /* ===== LOGO ANIMADO ===== */
-  .logo-section {
-    display: flex;
-    align-items: center;
-  }
-  
+  /* ===== LOGO CANVAS ===== */
   .logo-link {
     display: flex;
     align-items: center;
-    text-decoration: none;
     gap: 1rem;
-    transition: var(--transicion-rapida);
+    text-decoration: none;
+    transition: var(--transicion);
   }
   
   .logo-link:hover {
-    transform: translateY(-1px);
-  }
-  
-  .logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transform: translateY(-2px);
   }
   
   .logo-diafragma {
     position: relative;
     width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50%;
     overflow: hidden;
     background: transparent;
-    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.2);
-    transition: var(--transicion-rapida);
+    box-shadow: 0 0 0 1px rgba(138, 43, 226, 0.3);
+    transition: var(--transicion);
   }
   
   .logo-link:hover .logo-diafragma {
-    box-shadow: 0 0 0 2px var(--color-primario), 0 5px 15px rgba(138, 43, 226, 0.3);
+    box-shadow: 0 0 0 2px var(--color-primario), 0 5px 20px rgba(138, 43, 226, 0.4);
   }
   
-  /* Video del diafragma */
-  .video-diafragma {
+  .canvas-diafragma {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* FILTRO PARA CONVERTIR BLANCO A VIOLETA */
-    filter: brightness(0) saturate(100%) 
-            invert(27%) sepia(90%) saturate(2000%) 
-            hue-rotate(250deg) brightness(110%) contrast(120%);
-    mix-blend-mode: screen;
-    transition: var(--transicion-rapida);
+    display: block;
+    border-radius: 50%;
   }
   
-  .logo-link:hover .video-diafragma {
-    filter: brightness(0) saturate(100%) 
-            invert(27%) sepia(90%) saturate(2500%) 
-            hue-rotate(250deg) brightness(130%) contrast(130%);
-    transform: scale(1.05);
-  }
-  
-  /* Iniciales "RM" en el centro */
   .iniciales-rm {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 22px;
     color: var(--color-primario);
-    z-index: 2;
-    text-shadow: 0 0 12px rgba(138, 43, 226, 0.4);
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
     pointer-events: none;
-    transition: var(--transicion-rapida);
   }
   
-  .logo-link:hover .iniciales-rm {
-    color: var(--color-primario-hover);
-    text-shadow: 0 0 18px rgba(157, 78, 221, 0.6);
-    transform: scale(1.05);
-  }
-  
-  /* ===== NOMBRE Y TAGLINE ===== */
+  /* ===== NOMBRE ===== */
   .nombre-container {
     display: flex;
     flex-direction: column;
@@ -188,10 +149,8 @@
   
   .nombre-fotografo {
     font-size: 24px;
-    font-weight: 700;
     color: var(--color-blanco);
     letter-spacing: -0.3px;
-    line-height: 1.1;
   }
   
   .tagline-fotografo {
@@ -201,10 +160,9 @@
     letter-spacing: 1.2px;
     text-transform: uppercase;
     margin-top: 2px;
-    opacity: 0.9;
   }
   
-  /* ===== MENÚ DE NAVEGACIÓN ===== */
+  /* ===== MENÚ ===== */
   .main-nav {
     display: flex;
     align-items: center;
@@ -223,17 +181,14 @@
     text-decoration: none;
     color: var(--color-texto);
     font-weight: 500;
-    font-size: 15px;
     padding: 8px 14px;
     border-radius: 6px;
-    transition: var(--transicion-rapida);
-    position: relative;
-    white-space: nowrap;
+    transition: var(--transicion);
   }
   
   .nav-link:hover {
     color: var(--color-primario);
-    background-color: rgba(138, 43, 226, 0.08);
+    background-color: rgba(138, 43, 226, 0.1);
   }
   
   .nav-link.active {
@@ -241,51 +196,36 @@
     font-weight: 600;
   }
   
-  .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 14px;
-    right: 14px;
-    height: 2px;
-    background-color: var(--color-primario);
-    border-radius: 1px;
-  }
-  
-  /* ===== BOTÓN ÁREA CLIENTES ===== */
+  /* ===== BOTÓN CLIENTES ===== */
   .nav-btn-cliente {
     background: linear-gradient(135deg, var(--color-primario), #6a11cb);
-    color: var(--color-blanco) !important;
+    color: white !important;
     padding: 10px 22px !important;
     border-radius: 30px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
-    transition: var(--transicion-rapida);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    transition: var(--transicion);
     text-decoration: none;
-    border: none;
-    cursor: pointer;
   }
   
   .nav-btn-cliente:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
-    background: linear-gradient(135deg, #6a11cb, var(--color-primario));
   }
   
   .badge-exclusivo {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255,255,255,0.2);
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.6px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.5px;
   }
   
-  /* ===== MENÚ HAMBURGUESA (Responsive) ===== */
+  /* ===== HAMBURGUESA ===== */
   .menu-hamburguesa {
     display: none;
     background: none;
@@ -293,44 +233,21 @@
     cursor: pointer;
     width: 30px;
     height: 24px;
-    position: relative;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0;
-    z-index: 1001;
   }
   
   .menu-hamburguesa span {
     display: block;
     width: 100%;
-    height: 2.5px;
-    background-color: var(--color-texto);
-    border-radius: 2px;
-    transition: var(--transicion-rapida);
-    transform-origin: center;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: var(--transicion);
   }
   
-  .menu-hamburguesa.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-  
-  .menu-hamburguesa.active span:nth-child(2) {
-    opacity: 0;
-    transform: scale(0);
-  }
-  
-  .menu-hamburguesa.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-  
-  /* ===== RESPONSIVE DESIGN ===== */
-  @media (max-width: 1100px) {
-    .nav-list {
-      gap: 1rem;
-    }
-  }
-  
-  @media (max-width: 992px) {
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
     .menu-hamburguesa {
       display: flex;
     }
@@ -342,16 +259,11 @@
       width: 100%;
       background-color: var(--color-fondo);
       flex-direction: column;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      padding: 2rem;
       transform: translateY(-100%);
       opacity: 0;
       visibility: hidden;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 999;
-      gap: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
+      transition: all 0.4s ease;
     }
     
     .nav-list.active {
@@ -360,88 +272,124 @@
       visibility: visible;
     }
     
-    .nav-list li {
-      width: 100%;
-      text-align: center;
-    }
-    
-    .nav-link {
-      width: 100%;
-      justify-content: center;
-      padding: 1rem;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .nav-link:last-child {
-      border-bottom: none;
-    }
-    
-    .nav-link.active::after {
-      display: none;
-    }
-    
-    .nav-link.active {
-      background-color: rgba(138, 43, 226, 0.12);
-      border-radius: 12px;
-    }
-    
-    .nav-btn-cliente {
-      justify-content: center;
-      margin: 1.5rem 0 0.5rem 0 !important;
-      width: 100%;
-      padding: 1rem !important;
-      font-size: 16px;
-      border-radius: 12px;
-    }
-    
-    .header-container {
-      padding: 0 1.5rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
     .header-container {
       padding: 0 1rem;
-    }
-    
-    .nombre-fotografo {
-      font-size: 20px;
-    }
-    
-    .tagline-fotografo {
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-    
-    .logo-diafragma {
-      width: 50px;
-      height: 50px;
-    }
-    
-    .iniciales-rm {
-      font-size: 19px;
     }
   }
 </style>
 
 <script>
+  // ===== DIAFRAGMA CANVAS (Código adaptado) =====
   document.addEventListener('DOMContentLoaded', function() {
-    // Menú hamburguesa
+    const canvas = document.getElementById('logoCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = W / 2;
+    const cy = H / 2;
+    
+    // Parámetros optimizados para 60px
+    const BLADES = 9;
+    const OUTER_R = 28;
+    const INNER_OPEN = 20;
+    const INNER_CLOSED = 0;
+    const SLIDE = 22;
+    
+    let p = 0;
+    let dir = 1;
+    let lastTime = 0;
+    const SPEED = 0.008;
+    
+    function drawBlade(angle, innerR, progress) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      ctx.translate(0, -progress * SLIDE);
+      
+      ctx.beginPath();
+      ctx.moveTo(innerR, -6);
+      ctx.lineTo(OUTER_R, -14);
+      ctx.lineTo(OUTER_R, 14);
+      ctx.closePath();
+      
+      ctx.fillStyle = '#8A2BE2';
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    function clearCenter(r) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    function maskLens() {
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.beginPath();
+      ctx.arc(cx, cy, OUTER_R, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    function animate(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const delta = timestamp - lastTime;
+      lastTime = timestamp;
+      
+      p += SPEED * dir * (delta / 16);
+      if (p >= 1 || p <= 0) dir *= -1;
+      
+      ctx.clearRect(0, 0, W, H);
+      
+      const innerR = INNER_OPEN - p * (INNER_OPEN - INNER_CLOSED);
+      for (let i = 0; i < BLADES; i++) {
+        const angle = (Math.PI * 2 / BLADES) * i - 0.2;
+        drawBlade(angle, innerR, p);
+      }
+      
+      if (innerR > 0) clearCenter(innerR);
+      maskLens();
+      
+      requestAnimationFrame(animate);
+    }
+    
+    // Iniciar animación
+    setTimeout(() => animate(0), 100);
+    
+    // ===== MENÚ HAMBURGUESA =====
     const menuToggle = document.getElementById('menuToggle');
     const navList = document.querySelector('.nav-list');
     
-    if (menuToggle) {
+    if (menuToggle && navList) {
       menuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
         navList.classList.toggle('active');
       });
+      
+      // Cerrar menú al hacer clic en enlace (móvil)
+      document.querySelectorAll('.nav-link, .nav-btn-cliente').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            menuToggle.classList.remove('active');
+            navList.classList.remove('active');
+          }
+        });
+      });
     }
     
-    // Logo click - volver arriba
-    document.getElementById('logo-link').addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    // ===== LOGO CLICK =====
+    const logoLink = document.getElementById('logo-link');
+    if (logoLink) {
+      logoLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   });
 </script>
