@@ -1,424 +1,253 @@
 ---
-// Script de JavaScript para el menú (se ejecuta en cliente)
-const menuToggleScript = `
-document.addEventListener('DOMContentLoaded', function() {
+// src/components/Header.astro
+// HEADER COMPLETO - LOGO ANIMADO DESDE /videos/
+---
+
+<header class="main-header">
+  <div class="header-container">
+    <!-- LOGO + NOMBRE -->
+    <div class="logo-section">
+      <a href="/" class="logo-link" id="logo-link">
+        <div class="logo-wrapper">
+          <div class="logo-diafragma">
+            <span class="iniciales-rm">RM</span>
+            <!-- VIDEO DESDE /videos/ -->
+            <video class="video-diafragma" autoplay muted loop playsinline>
+              <source src="/videos/logo-diafragma.webm" type="video/webm">
+            </video>
+          </div>
+        </div>
+        
+        <div class="nombre-container">
+          <span class="nombre-fotografo">Rodrigo Montero</span>
+          <span class="tagline-fotografo">Fotografía</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- MENÚ -->
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+        <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+        <li><a href="#galeria" class="nav-link">Galería</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        <li>
+          <a href="#acceso-clientes" class="nav-btn-cliente">
+            <i class="fas fa-lock"></i> Área Clientes
+            <span class="badge-exclusivo">Exclusivo</span>
+          </a>
+        </li>
+      </ul>
+      
+      <button class="menu-hamburguesa" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* FUENTES */
+  .nombre-fotografo, .iniciales-rm {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+  }
+  
+  body, .nav-link, .tagline-fotografo, .nav-btn-cliente {
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+  
+  /* HEADER */
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(27, 27, 27, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* LOGO */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+  }
+  
+  .logo-diafragma {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .video-diafragma {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* FILTRO MÁGICO: blanco → violeta */
+    filter: brightness(0) saturate(100%) 
+            invert(27%) sepia(90%) saturate(2000%) 
+            hue-rotate(250deg) brightness(110%) contrast(120%);
+  }
+  
+  .iniciales-rm {
+    position: absolute;
+    font-size: 22px;
+    color: #8A2BE2;
+    z-index: 2;
+  }
+  
+  /* NOMBRE */
+  .nombre-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nombre-fotografo {
+    font-size: 24px;
+    color: white;
+  }
+  
+  .tagline-fotografo {
+    font-size: 11px;
+    color: #8A2BE2;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  
+  /* MENÚ */
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #E0E0E0;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #8A2BE2;
+    background-color: rgba(138, 43, 226, 0.1);
+  }
+  
+  .nav-link.active {
+    color: #8A2BE2;
+    font-weight: 600;
+  }
+  
+  /* BOTÓN CLIENTES */
+  .nav-btn-cliente {
+    background: linear-gradient(135deg, #8A2BE2, #6a11cb);
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: 30px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  
+  .badge-exclusivo {
+    background-color: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+  }
+  
+  /* HAMBURGUESA (móvil) */
+  .menu-hamburguesa {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .menu-hamburguesa span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .menu-hamburguesa {
+      display: flex;
+    }
+    
+    .nav-list {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background-color: #1B1B1B;
+      flex-direction: column;
+      padding: 2rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-list.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Menú hamburguesa
     const menuToggle = document.getElementById('menuToggle');
     const navList = document.querySelector('.nav-list');
     
     if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
+      menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navList.classList.toggle('active');
+      });
     }
     
-    // Cerrar menú al hacer clic en enlace (móvil)
-    document.querySelectorAll('.nav-link, .nav-btn-cliente').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 992) {
-                if (menuToggle) menuToggle.classList.remove('active');
-                if (navList) navList.classList.remove('active');
-            }
-        });
+    // Logo click - volver arriba
+    document.getElementById('logo-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    
-    // Animación del logo
-    const logoLink = document.getElementById('logo-link');
-    if (logoLink) {
-        logoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-});
-`;
----
-
-<header class="main-header">
-    <div class="header-container">
-        <!-- Logo + Nombre -->
-        <div class="logo-section">
-            <a href="/" class="logo-link" id="logo-link">
-                <!-- Logo SVG animado -->
-                <div class="logo-wrapper">
-                    <svg class="logo-obturador" width="50" height="50" viewBox="0 0 100 100">
-                        <circle class="obturador-exterior" cx="50" cy="50" r="45" fill="none" stroke="#8A2BE2" stroke-width="3"/>
-                        <line class="linea-obturador linea1" x1="50" y1="5" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
-                        <line class="linea-obturador linea2" x1="95" y1="50" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
-                        <line class="linea-obturador linea3" x1="50" y1="95" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
-                        <line class="linea-obturador linea4" x1="5" y1="50" x2="50" y2="50" stroke="#8A2BE2" stroke-width="3"/>
-                        <text class="iniciales-logo" x="50" y="55" text-anchor="middle" fill="#8A2BE2" font-size="24" font-weight="bold">RM</text>
-                    </svg>
-                </div>
-                <!-- Nombre al lado del logo -->
-                <div class="nombre-container">
-                    <span class="nombre-fotografo">Rodrigo Montero</span>
-                    <span class="tagline-fotografo">Fotógrafo</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- Menú de navegación HORIZONTAL -->
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a href="/" class="nav-link active">Inicio</a></li>
-                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
-                <li><a href="#galeria" class="nav-link">Galería</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                <!-- Botón especial para clientes -->
-                <li>
-                    <a href="#acceso-clientes" class="nav-btn-cliente">
-                        <i class="fas fa-lock"></i> Área Clientes
-                        <span class="badge-exclusivo">Exclusivo</span>
-                    </a>
-                </li>
-            </ul>
-            
-            <!-- Menú hamburguesa SOLO para móvil -->
-            <button class="menu-hamburguesa" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </div>
-</header>
-
-<style>
-    /* ===== VARIABLES ===== */
-    :root {
-        --color-primario: #8A2BE2;
-        --color-secundario: #333333;
-        --color-texto: #444444;
-        --color-fondo: #1b1b1b;  /* Manteniendo tu fondo oscuro */
-        --color-blanco: #ffffff;
-        --sombra-suave: 0 5px 15px rgba(0,0,0,0.08);
-        --transicion-rapida: all 0.3s ease;
-    }
-
-    /* ===== HEADER HORIZONTAL ===== */
-    .main-header {
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(27, 27, 27, 0.95);  /* Oscuro con transparencia */
-        backdrop-filter: blur(10px);
-        box-shadow: var(--sombra-suave);
-        z-index: 1000;
-        padding: 15px 0;
-        transition: var(--transicion-rapida);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .header-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* ===== LOGO + NOMBRE ===== */
-    .logo-section {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo-link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        transition: var(--transicion-rapida);
-        gap: 15px;
-    }
-
-    .logo-link:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Animación del obturador */
-    @keyframes abrirObturador {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    @keyframes moverLineas {
-        0%, 100% { 
-            stroke-dasharray: 0, 100;
-            stroke-dashoffset: 0;
-        }
-        50% { 
-            stroke-dasharray: 100, 0;
-            stroke-dashoffset: 50;
-        }
-    }
-
-    .logo-obturador {
-        cursor: pointer;
-    }
-
-    .obturador-exterior {
-        stroke-dasharray: 283;
-        stroke-dashoffset: 283;
-        animation: moverLineas 3s ease-in-out infinite;
-    }
-
-    .linea-obturador {
-        transform-origin: 50px 50px;
-        animation: abrirObturador 4s ease-in-out infinite;
-    }
-
-    .linea1 { animation-delay: 0s; }
-    .linea2 { animation-delay: 0.5s; }
-    .linea3 { animation-delay: 1s; }
-    .linea4 { animation-delay: 1.5s; }
-
-    .iniciales-logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 26px;
-        font-weight: 700;
-    }
-
-    /* Nombre del fotógrafo */
-    .nombre-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .nombre-fotografo {
-        font-family: 'Playfair Display', serif;
-        font-size: 24px;
-        font-weight: 600;
-        color: var(--color-blanco);
-        letter-spacing: -0.5px;
-    }
-
-    .tagline-fotografo {
-        font-size: 12px;
-        color: var(--color-primario);
-        font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-top: 2px;
-    }
-
-    /* ===== MENÚ DE NAVEGACIÓN ===== */
-    .nav-list {
-        display: flex;
-        list-style: none;
-        gap: 25px;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    .nav-link {
-        text-decoration: none;
-        color: var(--color-blanco);
-        font-weight: 500;
-        font-size: 16px;
-        padding: 8px 15px;
-        border-radius: 6px;
-        transition: var(--transicion-rapida);
-        display: inline-block;
-    }
-
-    .nav-link:hover {
-        color: var(--color-primario);
-        background-color: rgba(138, 43, 226, 0.1);
-    }
-
-    .nav-link.active {
-        color: var(--color-primario);
-        font-weight: 600;
-        position: relative;
-    }
-
-    .nav-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 15px;
-        right: 15px;
-        height: 2px;
-        background-color: var(--color-primario);
-        border-radius: 2px;
-    }
-
-    /* Botón Área Clientes */
-    .nav-btn-cliente {
-        background: linear-gradient(135deg, var(--color-primario), #6a11cb);
-        color: white !important;
-        padding: 10px 25px !important;
-        border-radius: 30px;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .nav-btn-cliente:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
-        background: linear-gradient(135deg, #6a11cb, var(--color-primario));
-    }
-
-    .badge-exclusivo {
-        background-color: rgba(255, 255, 255, 0.2);
-        padding: 3px 10px;
-        border-radius: 12px;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    /* Menú hamburguesa - SOLO visible en móvil */
-    .menu-hamburguesa {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 30px;
-        height: 24px;
-        position: relative;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 0;
-    }
-
-    .menu-hamburguesa span {
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-blanco);
-        border-radius: 3px;
-        transition: var(--transicion-rapida);
-    }
-
-    .menu-hamburguesa.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .menu-hamburguesa.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-hamburguesa.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1100px) {
-        .nav-list {
-            gap: 15px;
-        }
-        
-        .nav-link {
-            padding: 8px 12px;
-            font-size: 14px;
-        }
-        
-        .nav-btn-cliente {
-            padding: 8px 18px !important;
-            font-size: 14px;
-        }
-    }
-
-    @media (max-width: 992px) {
-        .menu-hamburguesa {
-            display: flex;
-        }
-        
-        .nav-list {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background-color: var(--color-fondo);
-            flex-direction: column;
-            padding: 30px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transicion-rapida);
-            z-index: 999;
-            gap: 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-list.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .nav-list li {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .nav-link {
-            width: 100%;
-            justify-content: center;
-            padding: 18px;
-            font-size: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-link:last-child {
-            border-bottom: none;
-        }
-        
-        .nav-link.active::after {
-            display: none;
-        }
-        
-        .nav-link.active {
-            background-color: rgba(138, 43, 226, 0.1);
-            border-radius: 10px;
-        }
-        
-        .nav-btn-cliente {
-            justify-content: center;
-            margin: 20px 0 10px 0 !important;
-            width: 100%;
-            padding: 15px !important;
-            font-size: 16px;
-            border-radius: 10px;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .header-container {
-            padding: 0 20px;
-        }
-        
-        .nombre-fotografo {
-            font-size: 20px;
-        }
-        
-        .tagline-fotografo {
-            font-size: 10px;
-        }
-        
-        .logo-obturador {
-            width: 40px;
-            height: 40px;
-        }
-    }
-</style>
-
-<script>
-    // Script del menú (se ejecuta en el cliente)
-    {menuToggleScript}
+  });
 </script>
