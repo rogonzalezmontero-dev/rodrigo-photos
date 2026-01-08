@@ -1,0 +1,506 @@
+---
+// src/pages/contacto.astro
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead 
+			title="Contacto | Rodrigo Montero" 
+			description="Contacta a Rodrigo Montero para sesiones de fotografía, eventos y proyectos especiales." 
+		/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+	</head>
+
+	<body>
+		<Header />
+
+		<main>
+			<!-- SECCIÓN CONTACTO -->
+			<section class="contacto-section">
+				<div class="contacto-container">
+					<!-- Título -->
+					<h1 class="titulo-principal">
+						Contacto
+					</h1>
+					
+					<!-- Subtítulo -->
+					<p class="subtitulo-contacto">
+						Completa el formulario y me pondré en contacto contigo lo antes posible.
+					</p>
+					
+					<!-- Caja rectangular del formulario -->
+					<div class="caja-formulario">
+						<form 
+							id="formularioContacto" 
+							action="https://formsubmit.co/contacto@rodrigomonterophoto.com" 
+							method="POST"
+						>
+							<!-- Configuración de FormSubmit -->
+							<input type="hidden" name="_next" value="https://www.rodrigomonterophoto.com/gracias">
+							<input type="hidden" name="_subject" value="Nuevo mensaje desde rodrigomonterophoto.com">
+							<input type="hidden" name="_captcha" value="false">
+							<input type="text" name="_honey" style="display:none">
+							
+							<!-- Rectángulo 1: Nombre -->
+							<div class="grupo-formulario">
+								<label for="nombre" class="label-formulario">
+									<i class="fas fa-user"></i> Nombre completo *
+								</label>
+								<input 
+									type="text" 
+									id="nombre" 
+									name="nombre" 
+									class="input-formulario" 
+									placeholder="Ej: María González" 
+									required
+								>
+							</div>
+							
+							<!-- Rectángulo 2: Email -->
+							<div class="grupo-formulario">
+								<label for="email" class="label-formulario">
+									<i class="fas fa-envelope"></i> Email *
+								</label>
+								<input 
+									type="email" 
+									id="email" 
+									name="email" 
+									class="input-formulario" 
+									placeholder="ejemplo@gmail.com" 
+									required
+								>
+							</div>
+							
+							<!-- Rectángulo 3: Teléfono (Opcional) -->
+							<div class="grupo-formulario">
+								<label for="telefono" class="label-formulario">
+									<i class="fas fa-phone"></i> Teléfono (opcional)
+								</label>
+								<input 
+									type="tel" 
+									id="telefono" 
+									name="telefono" 
+									class="input-formulario" 
+									placeholder="+54 9 11 1234 5678"
+								>
+								<small class="texto-opcional">Para contactarte más rápido si lo prefieres</small>
+							</div>
+							
+							<!-- Rectángulo 4: Mensaje (más grande) -->
+							<div class="grupo-formulario">
+								<label for="mensaje" class="label-formulario">
+									<i class="fas fa-comment"></i> Mensaje *
+								</label>
+								<textarea 
+									id="mensaje" 
+									name="mensaje" 
+									class="textarea-formulario" 
+									placeholder="Cuéntame sobre tu proyecto: ¿qué tipo de fotografía necesitas? ¿fecha aproximada? ¿ubicación? Cualquier detalle que consideres importante..." 
+									rows="6" 
+									maxlength="400"
+									required
+								></textarea>
+								<div class="contador-caracteres">
+									<span id="contador">0</span>/400 caracteres
+								</div>
+							</div>
+							
+							<!-- Botón de envío -->
+							<div class="grupo-boton">
+								<button type="submit" class="boton-enviar">
+									<i class="fas fa-paper-plane"></i> Enviar mensaje
+								</button>
+								<p class="nota-formulario">
+									* Campos obligatorios. Te responderé en menos de 24 horas.
+								</p>
+							</div>
+						</form>
+						
+						<!-- Mensaje de éxito -->
+						<div id="mensajeExito" class="mensaje-exito" style="display: none;">
+							<i class="fas fa-check-circle"></i>
+							<h3>¡Mensaje enviado!</h3>
+							<p>Gracias por contactarme. Te responderé lo antes posible.</p>
+							<button onclick="window.location.href='/'" class="boton-volver">
+								<i class="fas fa-arrow-left"></i> Volver al inicio
+							</button>
+						</div>
+					</div>
+					
+					<!-- Información de contacto alternativa -->
+					<div class="info-contacto">
+						<div class="info-item">
+							<i class="fas fa-envelope-open-text"></i>
+							<h3>Email directo</h3>
+							<p>contacto@rodrigomonterophoto.com</p>
+						</div>
+						
+						<div class="info-item">
+							<i class="fas fa-clock"></i>
+							<h3>Respuesta rápida</h3>
+							<p>Normalmente respondo en menos de 12 horas</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+		
+		<style>
+			/* ===== BASE ===== */
+			body {
+				background-color: #1B1B1B;
+				color: #FFFFFF;
+				font-family: 'Inter', sans-serif;
+				line-height: 1.6;
+				margin: 0;
+				padding: 0;
+				padding-top: 80px;
+			}
+			
+			/* ===== SECCIÓN CONTACTO ===== */
+			.contacto-section {
+				min-height: calc(100vh - 80px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 3rem 1.5rem;
+			}
+			
+			.contacto-container {
+				max-width: 800px;
+				width: 100%;
+			}
+			
+			/* ===== TÍTULOS ===== */
+			.titulo-principal {
+				font-family: 'Space Grotesk', sans-serif;
+				font-size: 3rem;
+				font-weight: 300;
+				color: #8A2BE2;
+				margin-bottom: 1rem;
+				text-align: center;
+				letter-spacing: 2px;
+			}
+			
+			.subtitulo-contacto {
+				font-size: 1.2rem;
+				color: #B0B0B0;
+				text-align: center;
+				max-width: 600px;
+				margin: 0 auto 3rem auto;
+				font-weight: 350;
+			}
+			
+			/* ===== CAJA FORMULARIO ===== */
+			.caja-formulario {
+				background: rgba(27, 27, 27, 0.9);
+				border: 1px solid rgba(138, 43, 226, 0.3);
+				border-radius: 12px;
+				padding: 2.5rem;
+				margin-bottom: 2.5rem;
+				backdrop-filter: blur(10px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+			}
+			
+			/* ===== RECTÁNGULOS DEL FORMULARIO ===== */
+			.grupo-formulario {
+				margin-bottom: 2rem;
+			}
+			
+			.label-formulario {
+				display: flex;
+				align-items: center;
+				gap: 0.7rem;
+				font-size: 1.1rem;
+				color: #E0E0E0;
+				margin-bottom: 0.8rem;
+				font-weight: 500;
+			}
+			
+			.label-formulario i {
+				color: #8A2BE2;
+				font-size: 1rem;
+			}
+			
+			.input-formulario, .textarea-formulario {
+				width: 100%;
+				padding: 1rem 1.2rem;
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 8px;
+				color: #FFFFFF;
+				font-family: 'Inter', sans-serif;
+				font-size: 1rem;
+				transition: all 0.3s ease;
+			}
+			
+			.input-formulario:focus, .textarea-formulario:focus {
+				outline: none;
+				border-color: #8A2BE2;
+				box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+				background: rgba(255, 255, 255, 0.08);
+			}
+			
+			.input-formulario::placeholder, .textarea-formulario::placeholder {
+				color: #888;
+			}
+			
+			/* Textarea más grande */
+			.textarea-formulario {
+				resize: vertical;
+				min-height: 150px;
+				font-size: 1.05rem;
+				line-height: 1.6;
+			}
+			
+			.texto-opcional {
+				display: block;
+				font-size: 0.85rem;
+				color: #888;
+				margin-top: 0.5rem;
+				font-style: italic;
+			}
+			
+			/* Contador de caracteres */
+			.contador-caracteres {
+				text-align: right;
+				font-size: 0.85rem;
+				color: #888;
+				margin-top: 0.5rem;
+			}
+			
+			#contador {
+				color: #8A2BE2;
+				font-weight: 600;
+			}
+			
+			/* ===== BOTÓN ENVIAR ===== */
+			.grupo-boton {
+				margin-top: 2.5rem;
+			}
+			
+			.boton-enviar {
+				width: 100%;
+				padding: 1.2rem;
+				background: linear-gradient(135deg, #8A2BE2, #6a11cb);
+				color: white;
+				border: none;
+				border-radius: 8px;
+				font-size: 1.2rem;
+				font-weight: 600;
+				font-family: 'Space Grotesk', sans-serif;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				letter-spacing: 0.5px;
+			}
+			
+			.boton-enviar:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+				background: linear-gradient(135deg, #9d4edd, #7a1bd2);
+			}
+			
+			.nota-formulario {
+				font-size: 0.9rem;
+				color: #888;
+				text-align: center;
+				margin-top: 1rem;
+				font-style: italic;
+			}
+			
+			/* ===== MENSAJE ÉXITO ===== */
+			.mensaje-exito {
+				background: rgba(34, 197, 94, 0.1);
+				border: 1px solid rgba(34, 197, 94, 0.3);
+				border-radius: 8px;
+				padding: 2.5rem;
+				text-align: center;
+				display: none;
+			}
+			
+			.mensaje-exito i {
+				font-size: 3.5rem;
+				color: #22C55E;
+				margin-bottom: 1.5rem;
+			}
+			
+			.mensaje-exito h3 {
+				font-size: 1.8rem;
+				color: #22C55E;
+				margin-bottom: 1rem;
+				font-family: 'Space Grotesk', sans-serif;
+			}
+			
+			.mensaje-exito p {
+				color: #B0B0B0;
+				font-size: 1.1rem;
+				margin-bottom: 2rem;
+			}
+			
+			.boton-volver {
+				padding: 0.8rem 2rem;
+				background: transparent;
+				color: #8A2BE2;
+				border: 1px solid #8A2BE2;
+				border-radius: 6px;
+				font-weight: 500;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 10px;
+				transition: all 0.3s;
+			}
+			
+			.boton-volver:hover {
+				background: rgba(138, 43, 226, 0.1);
+			}
+			
+			/* ===== INFO CONTACTO ===== */
+			.info-contacto {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+			}
+			
+			.info-item {
+				background: rgba(27, 27, 27, 0.7);
+				border: 1px solid rgba(138, 43, 226, 0.2);
+				border-radius: 8px;
+				padding: 1.5rem;
+				text-align: center;
+			}
+			
+			.info-item i {
+				font-size: 2rem;
+				color: #8A2BE2;
+				margin-bottom: 1rem;
+			}
+			
+			.info-item h3 {
+				font-size: 1.1rem;
+				color: #E0E0E0;
+				margin-bottom: 0.5rem;
+				font-weight: 600;
+			}
+			
+			.info-item p {
+				font-size: 1rem;
+				color: #B0B0B0;
+			}
+			
+			/* ===== RESPONSIVE ===== */
+			@media (max-width: 768px) {
+				.contacto-section {
+					padding: 2rem 1rem;
+				}
+				
+				.titulo-principal {
+					font-size: 2.5rem;
+				}
+				
+				.subtitulo-contacto {
+					font-size: 1.1rem;
+					margin-bottom: 2rem;
+				}
+				
+				.caja-formulario {
+					padding: 2rem;
+				}
+				
+				.info-contacto {
+					grid-template-columns: 1fr;
+				}
+			}
+			
+			@media (max-width: 480px) {
+				.caja-formulario {
+					padding: 1.5rem;
+				}
+				
+				.input-formulario, .textarea-formulario {
+					padding: 0.9rem;
+				}
+				
+				.boton-enviar {
+					padding: 1rem;
+					font-size: 1.1rem;
+				}
+			}
+		</style>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Contador de caracteres para el mensaje
+				const textarea = document.getElementById('mensaje');
+				const contador = document.getElementById('contador');
+				
+				if (textarea && contador) {
+					// Actualizar contador inicial
+					contador.textContent = textarea.value.length;
+					
+					// Actualizar mientras escribe
+					textarea.addEventListener('input', function() {
+						contador.textContent = this.value.length;
+						
+						// Cambiar color si se acerca al límite
+						if (this.value.length > 350) {
+							contador.style.color = '#f59e0b';
+						} else if (this.value.length > 380) {
+							contador.style.color = '#ef4444';
+						} else {
+							contador.style.color = '#8A2BE2';
+						}
+					});
+				}
+				
+				// Manejo del formulario
+				const formulario = document.getElementById('formularioContacto');
+				const mensajeExito = document.getElementById('mensajeExito');
+				
+				if (formulario) {
+					// Validación mejorada
+					formulario.addEventListener('submit', function(e) {
+						// Validar email
+						const email = document.getElementById('email').value;
+						const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+						
+						if (!emailRegex.test(email)) {
+							e.preventDefault();
+							alert('Por favor, ingresa un email válido.');
+							return;
+						}
+						
+						// Mostrar mensaje de éxito (opcional)
+						// formulario.style.display = 'none';
+						// mensajeExito.style.display = 'block';
+						// e.preventDefault(); // Quitar esto cuando esté en producción
+					});
+				}
+				
+				// Mejorar UX de inputs
+				document.querySelectorAll('.input-formulario, .textarea-formulario').forEach(input => {
+					// Efecto focus
+					input.addEventListener('focus', function() {
+						this.parentElement.style.transform = 'translateY(-2px)';
+					});
+					
+					input.addEventListener('blur', function() {
+						this.parentElement.style.transform = 'translateY(0)';
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
