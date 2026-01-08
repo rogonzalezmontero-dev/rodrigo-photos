@@ -28,35 +28,38 @@ import Footer from '../components/Footer.astro';
 						Sobre mí
 					</h1>
 					
-					<!-- Caja rectangular principal -->
+					<!-- Caja rectangular principal con imagen flotante -->
 					<div class="caja-contenido">
-						<!-- Texto justificado -->
-						<div class="texto-justificado">
-							<p>
-								La fotografía es mi manera de vivir más de cerca, de sentir el mundo con la intensidad de un latido. He viajado por lugares que me han dejado memoria en los ojos y en la piel, kilómetros que me enseñaron a observar, a escuchar silencios, a leer gestos y miradas que cuentan historias sin decir una palabra. Cada persona que se cruza en mi camino, cada instante que se detiene ante mi lente, es un pedazo de vida que intento conservar en luz y sombras.
-							</p>
+						<!-- Contenedor de texto e imagen -->
+						<div class="contenido-wrapper">
+							<!-- Imagen flotante a la derecha -->
+							<div class="imagen-perfil imagen-flotante">
+								<!-- Puedes añadir una imagen tuya aquí -->
+								<!-- <img src="/images/rodrigo-perfil.jpg" alt="Rodrigo Montero" class="foto-perfil"> -->
+								<div class="placeholder-imagen">
+									<i class="fas fa-user"></i>
+									<p>Rodrigo Montero</p>
+									<p style="font-size: 0.8rem; margin-top: 0.5rem;">Fotógrafo</p>
+								</div>
+							</div>
 							
-							<p>
-								Mis imágenes buscan la elocuencia de lo invisible: la ternura escondida en un gesto, la fuerza de una mirada, la vibración silenciosa de momentos que pasan y que merecen ser recordados. La luz se convierte en mi lenguaje, las luces y los contrastes me ayudan a transmitir lo que no se puede nombrar, lo que sentimos pero a veces no entendemos. Cada fotografía es un recuerdo que respira, un instante que habla sin voz, un fragmento de mucha vida que se niega a desvanecerse.
-							</p>
-							
-							<p>
-								He aprendido que la belleza está en lo fugaz, en lo pequeño y en lo inesperado. Que un gesto mínimo, una sonrisa, un reflejo de luz sobre una calle, puede contener una eternidad. Por eso mis imágenes buscan capturar eso que la memoria guarda: momentos que nos atraviesan, emociones que nos hacen sentir vivos, lugares que nos marcan y personas que nos enseñan a mirar de otra manera.
-							</p>
-							
-							<p>
-								Fotografiar es para mí un acto de intimidad y de libertad, un diálogo silencioso con la vida y con los que comparten esos instantes conmigo. Es detenerse en la efervescencia de lo cotidiano y transformarla en algo que quede, que conmueva, que emocione y que recuerde que la vida está hecha de gestos, de luces, de recuerdos que merecen ser eternos.
-							</p>
-						</div>
-						
-						<!-- Imagen o elemento visual (opcional) -->
-						<div class="imagen-perfil">
-							<!-- Puedes añadir una imagen tuya aquí -->
-							<!-- <img src="/images/rodrigo-perfil.jpg" alt="Rodrigo Montero"> -->
-							<div class="placeholder-imagen">
-								<i class="fas fa-user"></i>
-								<p>Rodrigo Montero</p>
-								<p style="font-size: 0.8rem; margin-top: 0.5rem;">Fotógrafo</p>
+							<!-- Texto justificado que se ajusta a la imagen -->
+							<div class="texto-justificado texto-ajustado">
+								<p>
+									La fotografía es mi manera de vivir más de cerca, de sentir el mundo con la intensidad de un latido. He viajado por lugares que me han dejado memoria en los ojos y en la piel, kilómetros que me enseñaron a observar, a escuchar silencios, a leer gestos y miradas que cuentan historias sin decir una palabra. Cada persona que se cruza en mi camino, cada instante que se detiene ante mi lente, es un pedazo de vida que intento conservar en luz y sombras.
+								</p>
+								
+								<p>
+									Mis imágenes buscan la elocuencia de lo invisible: la ternura escondida en un gesto, la fuerza de una mirada, la vibración silenciosa de momentos que pasan y que merecen ser recordados. La luz se convierte en mi lenguaje, las luces y los contrastes me ayudan a transmitir lo que no se puede nombrar, lo que sentimos pero a veces no entendemos. Cada fotografía es un recuerdo que respira, un instante que habla sin voz, un fragmento de mucha vida que se niega a desvanecerse.
+								</p>
+								
+								<p>
+									He aprendido que la belleza está en lo fugaz, en lo pequeño y en lo inesperado. Que un gesto mínimo, una sonrisa, un reflejo de luz sobre una calle, puede contener una eternidad. Por eso mis imágenes buscan capturar eso que la memoria guarda: momentos que nos atraviesan, emociones que nos hacen sentir vivos, lugares que nos marcan y personas que nos enseñan a mirar de otra manera.
+								</p>
+								
+								<p>
+									Fotografiar es para mí un acto de intimidad y de libertad, un diálogo silencioso con la vida y con los que comparten esos instantes conmigo. Es detenerse en la efervescencia de lo cotidiano y transformarla en algo que quede, que conmueva, que emocione y que recuerde que la vida está hecha de gestos, de luces, de recuerdos que merecen ser eternos.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -119,63 +122,23 @@ import Footer from '../components/Footer.astro';
 				margin-bottom: 2.5rem;
 				backdrop-filter: blur(10px);
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 3rem;
 			}
 			
-			@media (min-width: 768px) {
-				.caja-contenido {
-					grid-template-columns: 2fr 1fr;
-				}
+			.contenido-wrapper {
+				position: relative;
 			}
 			
-			/* ===== TEXTO JUSTIFICADO ===== */
-			.texto-justificado {
-				font-family: 'Inter', sans-serif;
-			}
-			
-			.texto-justificado p {
-				font-size: 1.1rem;
-				color: #E0E0E0;
-				line-height: 1.8;
-				margin-bottom: 1.8rem;
-				text-align: justify;
-				text-justify: inter-word;
-				font-weight: 350;
-			}
-			
-			.texto-justificado p:first-child {
-				margin-top: 0;
-			}
-			
-			.texto-justificado p:last-child {
-				margin-bottom: 0;
-			}
-			
-			/* Estilos para títulos dentro del texto */
-			.texto-justificado strong {
-				color: #8A2BE2;
-				font-weight: 500;
-			}
-			
-			.texto-justificado em {
-				font-style: italic;
-				color: #B0B0B0;
-			}
-			
-			/* ===== IMAGEN DE PERFIL ===== */
-			.imagen-perfil {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: flex-start;
-				padding-top: 1rem;
+			/* ===== IMAGEN FLOTANTE ===== */
+			.imagen-flotante {
+				float: right;
+				margin: 0 0 1.5rem 2rem;
+				shape-outside: circle(50%);
+				shape-margin: 1rem;
 			}
 			
 			.placeholder-imagen {
-				width: 220px;
-				height: 280px;
+				width: 200px;
+				height: 250px;
 				background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(27, 27, 27, 0.8) 100%);
 				border: 2px solid rgba(138, 43, 226, 0.4);
 				border-radius: 8px;
@@ -190,8 +153,8 @@ import Footer from '../components/Footer.astro';
 			}
 			
 			.placeholder-imagen i {
-				font-size: 3.5rem;
-				margin-bottom: 1.5rem;
+				font-size: 3rem;
+				margin-bottom: 1rem;
 				opacity: 0.8;
 			}
 			
@@ -202,20 +165,47 @@ import Footer from '../components/Footer.astro';
 				line-height: 1.4;
 			}
 			
-			/* Para cuando añadas tu imagen real */
-			.imagen-perfil img {
-				width: 100%;
-				max-width: 280px;
-				height: auto;
+			/* Para cuando añadas tu imagen real - forma circular */
+			.foto-perfil {
+				width: 200px;
+				height: 250px;
+				object-fit: cover;
 				border-radius: 8px;
-				border: 1px solid rgba(138, 43, 226, 0.3);
+				border: 2px solid rgba(138, 43, 226, 0.4);
 				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				shape-outside: inset(0px round 8px);
+				shape-margin: 1rem;
+			}
+			
+			/* ===== TEXTO JUSTIFICADO CON AJUSTE ===== */
+			.texto-ajustado {
+				text-align: justify;
+				text-justify: inter-word;
+				hyphens: auto;
+				overflow: hidden; /* Importante para el float */
+			}
+			
+			.texto-ajustado p {
+				font-size: 1.1rem;
+				color: #E0E0E0;
+				line-height: 1.8;
+				margin-bottom: 1.5rem;
+				font-weight: 350;
+				text-align: justify;
+			}
+			
+			.texto-ajustado p:first-of-type::first-letter {
+				font-size: 1.3em;
+				color: #8A2BE2;
+				font-weight: 500;
+				padding-right: 2px;
 			}
 			
 			/* ===== BOTÓN ===== */
 			.boton-container {
 				text-align: center;
 				margin-top: 1rem;
+				clear: both; /* Limpia el float */
 			}
 			
 			.boton-volver {
@@ -254,19 +244,19 @@ import Footer from '../components/Footer.astro';
 				
 				.caja-contenido {
 					padding: 2rem 1.5rem;
-					grid-template-columns: 1fr;
-					gap: 2rem;
 				}
 				
-				.texto-justificado p {
+				/* En móviles, la imagen va arriba centrada */
+				.imagen-flotante {
+					float: none;
+					margin: 0 auto 2rem auto;
+					display: block;
+					shape-outside: none;
+				}
+				
+				.texto-ajustado p {
 					font-size: 1.05rem;
 					line-height: 1.7;
-					margin-bottom: 1.5rem;
-				}
-				
-				.imagen-perfil {
-					order: -1;
-					margin-bottom: 1rem;
 				}
 				
 				.placeholder-imagen {
@@ -276,7 +266,6 @@ import Footer from '../components/Footer.astro';
 				
 				.placeholder-imagen i {
 					font-size: 2.5rem;
-					margin-bottom: 1rem;
 				}
 			}
 			
@@ -289,8 +278,22 @@ import Footer from '../components/Footer.astro';
 					font-size: 2rem;
 				}
 				
-				.texto-justificado p {
+				.texto-ajustado p {
 					font-size: 1rem;
+					text-align: left; /* En móviles muy pequeños mejor left */
+				}
+				
+				.placeholder-imagen {
+					width: 150px;
+					height: 180px;
+				}
+			}
+			
+			/* Soporte para navegadores antiguos */
+			@supports not (shape-outside: circle(50%)) {
+				.imagen-flotante {
+					float: right;
+					margin: 0 0 1.5rem 2rem;
 				}
 			}
 		</style>
