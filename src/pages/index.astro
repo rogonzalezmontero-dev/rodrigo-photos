@@ -10,6 +10,7 @@ import Footer from '../components/Footer.astro';
 		<BaseHead title="Rodrigo Montero | Fotógrafo" description="Fotografía de calle, eventos y retratos. Capturando momentos únicos, emociones y recuerdos." />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
@@ -24,35 +25,20 @@ import Footer from '../components/Footer.astro';
 						Fotografía
 					</h1>
 					
-					<!-- Subtítulo -->
-					<p class="subtitulo">
-						Memoria · Recuerdos · Luz · Mirada · Gestos · Vida · Viaje
-					</p>
-					
 					<!-- Caja rectangular central -->
 					<div class="caja-central">
-						<!-- Frase principal -->
-						<p class="frase-destacada">
-							<strong>Fotografiar es guardar el mundo en un suspiro de luz.</strong>
-						</p>
-						
-						<!-- Texto completo -->
+						<!-- Texto completo centrado -->
 						<div class="texto-completo">
 							<p>
-								Es rescatar del olvido esos gestos mínimos que, como la distancia, 
-								se llevan todo consigo.
+								Fotografiar es detener la luz antes de que se vuelva olvido.<br>
+								En cada imagen busco gestos mínimos, esos que sostienen la memoria cuando los recuerdos comienzan a desvanecerse.<br>
+								Mi mirada se posa en lo que ocurre una sola vez: instantes de vida que aún respiran, un rostro, un encuentro, una escena cotidiana que insiste en quedarse.<br>
+								La cámara se vuelve entonces un viaje silencioso, donde la luz revela lo que el tiempo intenta borrar y cada fotografía guarda la forma íntima de un recuerdo.
 							</p>
 							
-							<p>
-								Mi cámara no apunta a escenarios, sino a recuerdos que aún palpitan. 
-								Busco en la mirada lo que las palabras callaron, en la calle las 
-								historias que el tiempo no escribió.
-							</p>
-							
-							<p>
-								Porque al final, lo único que queda son estos instantes robados al 
-								olvido: pedazos de vida convertidos en memoria, en un viaje sin 
-								retorno donde tú eres el único destino.
+							<!-- Línea final en cursiva y gris claro -->
+							<p class="frase-final">
+								<em>Porque algunas imágenes no se miran: se recuerdan.</em>
 							</p>
 						</div>
 						
@@ -106,89 +92,99 @@ import Footer from '../components/Footer.astro';
 			
 			/* ===== TÍTULOS ===== */
 			.titulo-principal {
-				font-family: 'Playfair Display', serif;
-				font-size: 2.5rem;
-				font-weight: 400; /* Más delgado */
-				color: #8A2BE2;
-				margin-bottom: 0.5rem;
-				letter-spacing: 1px;
-			}
-			
-			.subtitulo {
-				font-size: 1rem;
-				color: #AAAAAA;
+				font-family: 'Space Grotesk', sans-serif;
+				font-size: 2.8rem;
 				font-weight: 300;
-				letter-spacing: 2px;
+				color: #8A2BE2;
+				margin-bottom: 2rem;
+				letter-spacing: 3px;
 				text-transform: uppercase;
-				margin-bottom: 3rem;
 			}
 			
 			/* ===== CAJA RECTANGULAR CENTRAL ===== */
 			.caja-central {
-				background: rgba(27, 27, 27, 0.8);
-				border: 1px solid rgba(138, 43, 226, 0.2);
-				border-radius: 8px;
-				padding: 2.5rem;
+				background: rgba(27, 27, 27, 0.9);
+				border: 1px solid rgba(138, 43, 226, 0.3);
+				border-radius: 12px;
+				padding: 3rem 2.5rem;
 				margin-bottom: 2.5rem;
-				backdrop-filter: blur(5px);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 			}
 			
-			.frase-destacada {
-				font-size: 1.4rem;
-				color: #FFFFFF;
-				line-height: 1.5;
-				margin-bottom: 2rem;
-				padding-bottom: 1.5rem;
-				border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-			}
-			
-			.frase-destacada strong {
-				font-weight: 500;
-				color: #8A2BE2;
-			}
-			
+			/* ===== TEXTO COMPLETO CENTRADO ===== */
 			.texto-completo {
-				text-align: left;
-				margin-bottom: 1.5rem;
+				text-align: center;
+				margin-bottom: 2rem;
 			}
 			
 			.texto-completo p {
-				font-size: 1.1rem;
+				font-family: 'Inter', sans-serif;
+				font-size: 1.15rem;
 				color: #E0E0E0;
-				line-height: 1.8;
-				margin-bottom: 1.5rem;
+				line-height: 1.9;
+				margin-bottom: 1.8rem;
+				font-weight: 350;
+				letter-spacing: 0.3px;
 			}
 			
+			.texto-completo br {
+				display: block;
+				margin: 0.8rem 0;
+				content: "";
+			}
+			
+			/* Frase final en cursiva y gris claro */
+			.frase-final {
+				font-family: 'Playfair Display', serif;
+				font-size: 1.2rem;
+				color: #B0B0B0 !important;
+				font-style: italic;
+				margin-top: 2rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				letter-spacing: 0.5px;
+			}
+			
+			.frase-final em {
+				font-style: italic;
+				color: #B0B0B0;
+			}
+			
+			/* ===== FIRMA ===== */
 			.firma {
 				font-family: 'Playfair Display', serif;
 				font-size: 1.1rem;
 				color: #8A2BE2;
-				text-align: right;
+				text-align: center;
 				font-style: italic;
 				margin-top: 1rem;
-				padding-top: 1rem;
-				border-top: 1px solid rgba(138, 43, 226, 0.2);
+				padding-top: 1.5rem;
+				border-top: 1px solid rgba(138, 43, 226, 0.3);
+				letter-spacing: 1px;
 			}
 			
 			/* ===== BOTONES ===== */
 			.botones-container {
 				display: flex;
-				gap: 1rem;
+				gap: 1.2rem;
 				justify-content: center;
 				flex-wrap: wrap;
 			}
 			
 			.boton-ver, .boton-contacto {
-				padding: 0.9rem 2rem;
-				border-radius: 4px;
+				padding: 1rem 2.2rem;
+				border-radius: 6px;
 				font-weight: 500;
 				text-decoration: none;
 				display: inline-flex;
 				align-items: center;
 				gap: 10px;
 				transition: all 0.3s ease;
-				font-size: 0.95rem;
+				font-size: 1rem;
 				border: 1px solid transparent;
+				font-family: 'Space Grotesk', sans-serif;
+				letter-spacing: 0.5px;
 			}
 			
 			.boton-ver {
@@ -198,7 +194,8 @@ import Footer from '../components/Footer.astro';
 			
 			.boton-ver:hover {
 				background-color: #7a1bd2;
-				transform: translateY(-2px);
+				transform: translateY(-3px);
+				box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 			}
 			
 			.boton-contacto {
@@ -209,7 +206,8 @@ import Footer from '../components/Footer.astro';
 			
 			.boton-contacto:hover {
 				background-color: rgba(138, 43, 226, 0.1);
-				transform: translateY(-2px);
+				transform: translateY(-3px);
+				box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
 			}
 			
 			/* ===== RESPONSIVE ===== */
@@ -219,28 +217,59 @@ import Footer from '../components/Footer.astro';
 				}
 				
 				.titulo-principal {
-					font-size: 2rem;
+					font-size: 2.2rem;
+					letter-spacing: 2px;
+					margin-bottom: 1.5rem;
 				}
 				
 				.caja-central {
-					padding: 1.5rem;
+					padding: 2rem 1.5rem;
+					border-radius: 10px;
 				}
 				
-				.frase-destacada {
-					font-size: 1.2rem;
+				.texto-completo p {
+					font-size: 1.05rem;
+					line-height: 1.8;
+				}
+				
+				.frase-final {
+					font-size: 1.1rem;
+					margin-top: 1.5rem;
+					padding-top: 1.2rem;
+				}
+				
+				.botones-container {
+					flex-direction: column;
+					gap: 1rem;
+				}
+				
+				.boton-ver, .boton-contacto {
+					width: 100%;
+					justify-content: center;
+					padding: 0.9rem 2rem;
+				}
+			}
+			
+			/* Pequeños ajustes para móviles muy pequeños */
+			@media (max-width: 480px) {
+				.titulo-principal {
+					font-size: 1.8rem;
+				}
+				
+				.caja-central {
+					padding: 1.5rem 1rem;
 				}
 				
 				.texto-completo p {
 					font-size: 1rem;
 				}
 				
-				.botones-container {
-					flex-direction: column;
+				.frase-final {
+					font-size: 1rem;
 				}
 				
-				.boton-ver, .boton-contacto {
-					width: 100%;
-					justify-content: center;
+				.firma {
+					font-size: 1rem;
 				}
 			}
 		</style>
