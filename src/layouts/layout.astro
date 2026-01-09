@@ -1,0 +1,65 @@
+---
+// 1. Frontmatter (opcional: aquí defines props si las necesitas)
+export interface Props {
+  title?: string;
+}
+const { title = 'Mi Portafolio' } = Astro.props;
+---
+
+<!-- 2. Estructura HTML -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- {title} --></title>
+  <!-- Aquí irán tus estilos globales -->
+  <style>
+    /* Estilos base para el layout */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; }
+    /* Estilos para la barra fija */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #2d3748; /* Gris oscuro de tu demo */
+      padding: 1rem;
+      z-index: 1000;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Espacio para que el contenido no quede detrás de la barra fija */
+    main {
+      margin-top: 70px; /* Ajusta según la altura de tu navbar */
+    }
+  </style>
+</head>
+<body>
+  <!-- 3. Barra de Navegación FIJA -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre-mi">Sobre Mí</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- 4. Contenido Principal (Aquí se inyectará cada página) -->
+  <main>
+    <slot /> <!-- ⚠️ ESTA ES LA CLAVE. Aquí Astro inserta el contenido de tus páginas -->
+  </main>
+
+  <!-- 5. Script para Scroll Suave (opcional, añádelo luego) -->
+</body>
+</html>
