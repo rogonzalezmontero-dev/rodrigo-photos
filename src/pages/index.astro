@@ -1,8 +1,6 @@
+cat > src/pages/index.astro << 'EOF'
 ---
-// src/pages/index.astro
-// Importaciones: Tailwind para los estilos de Lovable + tus componentes
-import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el CSS de Lovable/Tailwind
-// (Si usas Astro con Tailwind, el archivo podría llamarse '../styles/tailwind.css' o similar)
+// src/pages/index.astro - Versión limpia y funcional
 ---
 
 <!DOCTYPE html>
@@ -12,21 +10,15 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Montero | Fotógrafo</title>
     <meta name="description" content="Fotografía de calle, eventos y retratos. Capturando momentos únicos, emociones y recuerdos.">
-    <!-- Importamos las fuentes específicas de Lovable y las tuyas -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-display min-h-screen">
-    <!-- Barra de Navegación Fija (Inspirada en Lovable) -->
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300 bg-background/80 backdrop-blur-md">
         <div class="container-custom flex justify-between items-center">
-            <!-- Logo / Nombre -->
-            <a href="#inicio" class="text-xl font-serif font-medium tracking-widest">
-                RODRIGO MONTERO
-            </a>
-            <!-- Enlaces de Navegación -->
+            <a href="#inicio" class="text-xl font-serif font-medium tracking-widest">RODRIGO MONTERO</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
@@ -36,12 +28,9 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
         </div>
     </nav>
 
-    <!-- Contenido Principal con Scroll Suave -->
     <main>
-        <!-- SECCIÓN INICIO/PRESENTACIÓN (Tu texto poético) -->
         <section id="inicio" class="min-h-screen flex items-center justify-center px-4 pt-20">
             <div class="container-custom max-w-4xl text-center">
-                <!-- Caja Central - Adaptada con clases de Lovable -->
                 <div class="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8 md:p-12 mb-10 shadow-2xl animate-fade-in">
                     <div class="texto-completo space-y-6">
                         <p class="text-lg md:text-xl text-foreground/90 font-light leading-relaxed font-['Inter']">
@@ -51,19 +40,14 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
                             La cámara se vuelve entonces un viaje silencioso, donde la luz revela lo que el tiempo intenta borrar y cada fotografía guarda la forma íntima de un recuerdo.
                         </p>
                         
-                        <!-- Frase Final -->
                         <p class="frase-final text-xl md:text-2xl text-muted-foreground font-serif italic border-t border-border pt-8 mt-8">
                             <em>Porque algunas imágenes no se miran: se recuerdan.</em>
                         </p>
                     </div>
                     
-                    <!-- Firma - Manteniendo tu color morado -->
-                    <p class="firma text-accent font-serif italic text-lg mt-8 pt-6 border-t border-border/50" style="color: #8A2BE2;">
-                        — Rodrigo
-                    </p>
+                    <p class="firma text-accent font-serif italic text-lg mt-8 pt-6 border-t border-border/50" style="color: #8A2BE2;">— Rodrigo</p>
                 </div>
                 
-                <!-- Botones -->
                 <div class="botones-container flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style="animation-delay: 0.2s;">
                     <a href="#galeria" class="boton-ver flex items-center justify-center gap-2">
                         <i class="fas fa-images"></i> Ver Galería
@@ -75,25 +59,19 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
             </div>
         </section>
 
-        <!-- SECCIÓN GALERÍA (Estructura de Lovable - Añadir imágenes después) -->
         <section id="galeria" class="py-20 px-4">
             <div class="container-custom">
                 <div class="text-center mb-12">
                     <p class="section-title">Trabajo Seleccionado</p>
                     <h2 class="section-heading">Galería</h2>
                 </div>
-                <!-- Filtros y Grid de Galería (Vendrán de Lovable) -->
-                <div class="text-center mb-8">
-                    <!-- Los filtros se cargarán aquí -->
-                </div>
+                <div class="text-center mb-8"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
-                    <!-- Las imágenes se inyectarán aquí con JavaScript -->
                     <p class="text-center text-muted-foreground col-span-full py-12">Galería cargando...</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN CONTACTO (Formulario de Lovable) -->
         <section id="contacto" class="py-20 px-4 bg-card/30">
             <div class="container-custom max-w-2xl">
                 <div class="text-center mb-12">
@@ -104,24 +82,19 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
                     <input type="text" placeholder="Tu Nombre" class="contact-input" required>
                     <input type="email" placeholder="Tu Email" class="contact-input" required>
                     <textarea placeholder="Tu Mensaje" rows="5" class="contact-input" required></textarea>
-                    <button type="submit" class="submit-btn">
-                        Enviar Mensaje
-                    </button>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Footer Simple -->
     <footer class="py-8 text-center text-sm text-muted-foreground border-t border-border">
         <div class="container-custom">
             <p>© 2023 Rodrigo Montero. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- SCRIPTS PARA INTERACTIVIDAD -->
     <script>
-        // 1. Scroll Suave para Enlaces Internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -137,7 +110,6 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
             });
         });
 
-        // 2. Efecto en Navbar al hacer Scroll
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -146,14 +118,9 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
                 navbar.classList.remove('nav-scrolled');
             }
         });
-
-        // 3. (OPCIONAL) Lógica para filtrar la galería - Se puede añadir después
-        console.log('Sitio cargado. La galería interactiva se conectará en el siguiente paso.');
     </script>
 
-    <!-- ESTILOS INLINE PARA PERSONALIZACIÓN ESPECÍFICA -->
     <style>
-        /* Contenedor personalizado */
         .container-custom {
             width: 100%;
             max-width: 1200px;
@@ -163,7 +130,6 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
             padding-right: 1.5rem;
         }
 
-        /* Enlaces de navegación */
         .nav-link {
             color: hsl(var(--foreground));
             text-decoration: none;
@@ -178,9 +144,8 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
             border-bottom-color: hsl(var(--accent));
         }
 
-        /* Botones (usando tu paleta morada para acentos) */
         .boton-ver {
-            background-color: #8A2BE2; /* Tu morado */
+            background-color: #8A2BE2;
             color: white;
             padding: 1rem 2.5rem;
             border-radius: 6px;
@@ -215,10 +180,10 @@ import '../styles/globals.css'; // <-- Asegúrate de que este archivo tenga el C
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
         }
 
-        /* Asegurar que las fuentes personalizadas se carguen */
         .font-display { font-family: 'Montserrat', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-['Inter'] { font-family: 'Inter', sans-serif; }
     </style>
 </body>
 </html>
+EOF
